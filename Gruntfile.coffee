@@ -27,6 +27,16 @@ module.exports = (grunt) ->
                     flatten: true
                     src: 'node_modules/angular/angular.min.*'
                     dest: 'public/lib'
+                }, {
+                    expand: true
+                    flatten: true
+                    src: 'node_modules/angular-bootstrap/dist/ui-bootstrap*.min.*'
+                    dest: 'public/lib'
+                }, {
+                    expand: true
+                    flatten: true
+                    src: 'node_modules/angular-route/angular-route.min.*'
+                    dest: 'public/lib'
                 }]
 
         # watch the source code for changes, trigger actions, then push built files to the server.

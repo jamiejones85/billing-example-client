@@ -1,7 +1,8 @@
 <div class="page-header">
     <h2>Your Bill</h2>
 </div>
-<div class="panel panel-primary">
+<alert ng-show="error" type="{{error.type}}">{{error.msg}}</alert>
+<div class="panel panel-primary" ng-show="bill">
     <div class="panel-heading">Statement</div>
     <div class="panel-body panel-statement">
         <p>This is a summary of your charges, please see below for itemised billing.</p>
@@ -15,7 +16,7 @@
         <li class="list-group-item list-group-item-total"><strong>Total:</strong> {{:: bill.total| currency:"£" }}</li>
     </ul>
 </div>
-<accordion close-others="true">
+<accordion close-others="true" ng-show="bill">
     <accordion-group heading="Subscriptions ({{:: bill.package.total| currency:'£' }})">
         <table class="table">
             <thead>
@@ -54,7 +55,7 @@
                 <tr ng-repeat="call in bill.callCharges.calls">
                   <td>{{:: call.called }}</td>
                   <td>{{:: call.duration }}</td>
-                  <td>{{:: call.cost| currency:'£' }</td>
+                  <td>{{:: call.cost | currency:'£' }}</td>
                 </tr>
             </tbody>
             <tfoot>

@@ -7,7 +7,6 @@ intended to be kept very simple. I've also used jasmine for the first time.
 
     *[npm](https://docs.npmjs.com/)
     *[grunt-cli](http://gruntjs.com/getting-started) installed globally: npm install -g grunt-cli
-    *[karma-cli](http://karma-runner.github.io/0.12/intro/installation.html)
 
 
 ## Get the dependencies
@@ -24,12 +23,13 @@ Navigate to http://localhost:8282/ in your browser
 ## Run the tests
 
     cd tests
-    karma start
+    ./node_modules/.bin/karma start tests/karma.conf.js
 
 ## To run the end2end tests.
 
     *Ensure the proxy is running, see [Readme](https://github.com/jamiejones85/billing-example-proxy/blob/master/Readme.md)
     *Start the web driver ./node_modules/protractor/bin/webdriver-manager start in one terminal
+        *Will need to run  ./node_modules/protractor/bin/webdriver-manager update --standalone the before the first run
     *Start the application server grunt http-server in another terminal
     *Run protractor tests with ./node_modules/protractor/bin/protractor e2e/conf.js in a 3rd terminal
 

@@ -80,6 +80,6 @@ describe('billController failing to contacting external server', function (){
      // tests start here
      it('should fetch bill', function(){
          $httpBackend.flush();
-         expect(scope.error).toBe("Server Error");
+         expect(scope.error.msg).toBe("Error Retrieving Bill from Sky.");
      });
 });
