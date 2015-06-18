@@ -3,20 +3,20 @@
 </div>
 <div class="panel panel-primary">
     <div class="panel-heading">Statement</div>
-    <div class="panel-body">
+    <div class="panel-body panel-statement">
         <p>This is a summary of your charges, please see below for itemised billing.</p>
     </div>
     <ul class="list-group">
-        <li class="list-group-item"><strong>Period:</strong> {{:: bill.statement.period.from }} &#45; {{:: bill.statement.period.to }} </li>
-        <li class="list-group-item"><strong>Due:</strong> {{:: bill.statement.due }}</li>
-        <li class="list-group-item"><strong>Subscriptions:</strong> &pound;{{:: bill.subscriptions.total }}</li>
-        <li class="list-group-item"><strong>Calls:</strong> &pound;{{:: bill.callCharges.total }}</li>
-        <li class="list-group-item"><strong>Sky Store:</strong> &pound;{{:: bill.skyStore.total }}</li>
-        <li class="list-group-item"><strong>Total:</strong> &pound;{{:: bill.total }}</li>
+        <li class="list-group-item list-group-item-period"><strong>Period:</strong> {{:: bill.statement.period.from }} &#45; {{:: bill.statement.period.to }} </li>
+        <li class="list-group-item list-group-item-due"><strong>Due:</strong> {{:: bill.statement.due }}</li>
+        <li class="list-group-item list-group-item-subscriptions"><strong>Subscriptions:</strong> {{:: bill.package.total| currency:"£" }}</li>
+        <li class="list-group-item list-group-item-calls"><strong>Calls:</strong> {{:: bill.callCharges.total| currency:"£" }}</li>
+        <li class="list-group-item list-group-item-store"><strong>Sky Store:</strong> {{:: bill.skyStore.total| currency:"£" }}</li>
+        <li class="list-group-item list-group-item-total"><strong>Total:</strong> {{:: bill.total| currency:"£" }}</li>
     </ul>
 </div>
 <accordion close-others="true">
-    <accordion-group heading="Subscriptions (&pound;{{:: bill.package.total }})">
+    <accordion-group heading="Subscriptions ({{:: bill.package.total| currency:'£' }})">
         <table class="table">
             <thead>
                 <tr>
@@ -41,7 +41,7 @@
             </tfoot>
         </table>
     </accordion-group>
-    <accordion-group heading="Your Calls (&pound;{{:: bill.callCharges.total }})">
+    <accordion-group heading="Your Calls ({{:: bill.callCharges.total| currency:'£' }})">
         <table class="table">
             <thead>
                 <tr>
@@ -54,19 +54,19 @@
                 <tr ng-repeat="call in bill.callCharges.calls">
                   <td>{{:: call.called }}</td>
                   <td>{{:: call.duration }}</td>
-                  <td>&pound; {{:: call.cost }}</td>
+                  <td>{{:: call.cost| currency:'£' }</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td></td>
                     <td>Total:</td>
-                    <td>&pound;{{:: bill.callCharges.total }}</td>
+                    <td>{{:: bill.callCharges.total| currency:'£' }}</td>
                 </tr>
             </tfoot>
         </table>
     </accordion-group>
-    <accordion-group heading="Sky Store (&pound;{{:: bill.skyStore.total }})">
+    <accordion-group heading="Sky Store ({{:: bill.skyStore.total| currency:'£' }})">
         <table class="table">
             <thead>
                 <tr>
@@ -79,18 +79,18 @@
                 <tr ng-repeat="rental in bill.skyStore.rentals">
                   <td>{{:: rental.title }}</td>
                   <td>Rental</td>
-                  <td>&pound; {{:: rental.cost }}</td>
+                  <td>{{:: rental.cost| currency:'£' }}</td>
                 </tr>
                 <tr ng-repeat="buy in bill.skyStore.buyAndKeep">
                   <td>{{:: buy.title }}</td>
                   <td>Buy and Keep</td>
-                  <td>&pound; {{:: buy.cost }}</td>
+                  <td>{{:: buy.cost| currency:'£' }}</td>
                 </tr>
                 <tfoot>
                     <tr>
                         <td></td>
                         <td>Total:</td>
-                        <td>&pound;{{:: bill.skyStore.total }}</td>
+                        <td>{{:: bill.skyStore.total| currency:'£' }}</td>
                     </tr>
                 </tfoot>
             </tbody>

@@ -1,6 +1,6 @@
 'use strict';
 
-describe('billController', function (){
+describe('billController successfully contacting external server', function (){
     var scope, $httpBackend;//we'll use these in our tests
 
      //mock Application to allow us to inject our own dependencies
@@ -55,7 +55,31 @@ describe('billController', function (){
      // tests start here
      it('should fetch bill', function(){
          $httpBackend.flush();
-         expect(scope.bill.callCharges.calls.length).toBe(136.03);
-         expect(scope.bill.total).toBe(3);
+         expect(scope.bill.callCharges.calls.length).toBe(3);
+         expect(scope.bill.total).toBe(102.76);
+     });
+});
+
+
+describe('billController failing to contacting external server', function (){
+    var scope, $httpBackend;//we'll use these in our tests
+
+     //mock Application to allow us to inject our own dependencies
+     beforeEach(angular.mock.module('app'));
+     //mock the controller for the same reason and include $rootScope and $controller
+     beforeEach(angular.mock.inject(function($rootScope, $controller, _$httpBackend_){
+         $httpBackend = _$httpBackend_;
+         $httpBackend.when('GET', 'http://localhost:8008/').respond(500, "Server Error");
+
+         //create an empty scope
+         scope = $rootScope.$new();
+         //declare the controller and inject our empty scope
+         $controller('billController', {$scope: scope});
+     }));
+
+     // tests start here
+     it('should fetch bill', function(){
+         $httpBackend.flush();
+         expect(scope.error).toBe("Server Error");
      });
 });
