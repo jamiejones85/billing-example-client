@@ -44,7 +44,7 @@ module.exports = (grunt) ->
                 root: 'public/'
                 port: 8282
                 host: '0.0.0.0'
-                runInBackground: true
+                runInBackground: false
 
     # load grunt modules/tasks.
     grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -63,4 +63,6 @@ module.exports = (grunt) ->
     grunt.registerTask 'build', [
         'sass'
         'coffee'
+        'copy',
+        'http-server'
     ]
